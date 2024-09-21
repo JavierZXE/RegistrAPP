@@ -1,20 +1,62 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100vh;">
+      
+      <ion-col size="auto">
+        <ion-segment color="warning" [(ngModel)]="selectedCard">
+          <ion-segment-button value="first">
+            <ion-label>Alumno</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="second">
+            <ion-label>Profesor</ion-label>
+          </ion-segment-button>
+        </ion-segment>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+        <ion-card *ngIf="selectedCard === 'first'">
+          <ion-card-header class="ion-align-items-center">
+            <br>
+            <ion-card-title>Iniciar Sesion</ion-card-title>
+            <ion-card-subtitle>Alumno</ion-card-subtitle>
+            <br>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <ion-input label="Usuario" label-placement="floating" fill="outline"></ion-input>
+            <br>
+            <ion-input label="Contraseña" label-placement="floating" fill="outline"></ion-input>
+            <br>
+            <a (click)="restablecerPwd()">¿Olvidaste tu contraseña?</a>
+            <br><br>
+            <ion-button [routerLink]="['/menu-alumno']" expand="block" color="warning" shape="round">
+              Ingresar
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card *ngIf="selectedCard === 'second'">
+          <ion-card-header class="ion-align-items-center">
+            <br>
+            <ion-card-title>Iniciar Sesion</ion-card-title>
+            <ion-card-subtitle>Profesor</ion-card-subtitle>
+            <br>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-input label="Usuario" label-placement="floating" fill="outline"></ion-input>
+            <br>
+            <ion-input label="Contraseña" label-placement="floating" fill="outline"></ion-input>
+            <br>
+            <a (click)="restablecerPwd()">¿Olvidaste tu contraseña?</a>
+            <br><br>
+            <ion-button [routerLink]="['/menu-profesor']" expand="block" color="warning" shape="round">
+              Ingresar
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid> 
 </ion-content>
