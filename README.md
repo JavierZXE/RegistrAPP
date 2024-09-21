@@ -1,2 +1,2 @@
 # RegistrAPP
-![New Wireframe 1](https://github.com/user-attachments/assets/6836b794-6420-4de1-a96f-576a9cfe9e09)
+![Pagina de inicio](https://github.com/user-attachments/assets/9707a42d-ebb8-488e-882d-f29c40fc5f16)
