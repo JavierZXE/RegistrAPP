@@ -1,0 +1,112 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item [button]="true" [href]="'/asignatura-profesor'">
+        <ion-icon name="library-outline" class="ion-margin-end"></ion-icon>
+        <ion-label>Mis asignaturas</ion-label>
+      </ion-item>
+      <ion-item [button]="true" [href]="'/asistencia-profesor'">
+        <ion-icon name="calendar-outline" class="ion-margin-end"></ion-icon>
+        <ion-label>Mis asistencias</ion-label>
+      </ion-item>
+      <ion-item [button]="true" [href]="'/cambiar-clave-profesor'">
+        <ion-icon name="lock-closed-outline" class="ion-margin-end"></ion-icon>
+        <ion-label>Cambiar clave</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-label style="font-size: 20px;">Mis Asignaturas</ion-label>
+      <ion-buttons slot="end">
+        <ion-back-button defaultHref="menu-profesor"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-list>
+      <ion-item>
+        <ion-label>
+          <strong>Arquitectura</strong><br>
+          <ion-text>ASY4131_002D</ion-text><br>
+          <ion-note color="medium" class="ion-text-wrap">
+            Modalidad: Diurno
+          </ion-note>&nbsp;&nbsp;
+          <ion-note color="medium" class="ion-text-wrap">
+            Desde: 11:20 Hasta: 12:40
+          </ion-note>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <strong>Calidad De Sofware</strong><br>
+          <ion-text>CSY41111_002D</ion-text><br>
+          <ion-note color="medium" class="ion-text-wrap">
+            Modalidad: Diurno
+          </ion-note>&nbsp;&nbsp;
+          <ion-note color="medium" class="ion-text-wrap">
+            Desde: 11:20 Hasta: 12:40
+          </ion-note>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <strong>Estadistica Descriptiva</strong><br>
+          <ion-text>MAT4140_002D</ion-text><br>
+          <ion-note color="medium" class="ion-text-wrap">
+            Modalidad: Diurno
+          </ion-note>&nbsp;&nbsp;
+          <ion-note color="medium" class="ion-text-wrap">
+            Desde: 11:20 Hasta: 12:40
+          </ion-note>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <strong>Etica Para El Trabajo</strong><br>
+          <ion-text>EAY4450_003D</ion-text><br>
+          <ion-note color="medium" class="ion-text-wrap">
+            Modalidad: Diurno
+          </ion-note>&nbsp;&nbsp;
+          <ion-note color="medium" class="ion-text-wrap">
+            Desde: 11:20 Hasta: 12:40
+          </ion-note>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <strong>Ingles Intermedio</strong><br>
+          <ion-text>INI5111_011D</ion-text><br>
+          <ion-note color="medium" class="ion-text-wrap">
+            Modalidad: Diurno
+          </ion-note>&nbsp;&nbsp;
+          <ion-note color="medium" class="ion-text-wrap">
+            Desde: 11:20 Hasta: 12:40
+          </ion-note>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <strong>Programacion De Aplicaciones Moviles</strong><br>
+          <ion-text>PGY4121_002D</ion-text><br>
+          <ion-note color="medium" class="ion-text-wrap">
+            Modalidad: Diurno
+          </ion-note>&nbsp;&nbsp;
+          <ion-note color="medium" class="ion-text-wrap">
+            Desde: 11:20 Hasta: 12:40
+          </ion-note>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</div>

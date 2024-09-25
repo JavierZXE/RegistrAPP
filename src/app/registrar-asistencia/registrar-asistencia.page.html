@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Registrar Asistencia</ion-title>
+    <ion-button expand="block" fill="clear" slot="end" color="warning" [routerLink]="'/menu-profesor'">
+      <ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp;Cerrar Asistencia
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="4">
+        <ion-range min="300" max="1000" step="10" [(ngModel)]="qrSize" (ionChange)="onRangeChange($event)" aria-label="Tamaño QR"></ion-range>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="auto">
+        <qr-code [value]="'Quedas presente'" [size]="qrSize" errorCorrectionLevel="M"></qr-code>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

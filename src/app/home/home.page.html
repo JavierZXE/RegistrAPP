@@ -4,8 +4,12 @@
 
 <ion-content [fullscreen]="true">
   <ion-grid>
-    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100vh;">
-      
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 18vh;">
+      <ion-col size="auto">
+        <ion-img src="assets/logo.png" style="width: 400px; height: 400px;"></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 80vh;">
       <ion-col size="auto">
         <ion-segment color="warning" [(ngModel)]="selectedCard">
           <ion-segment-button value="first">

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-menu-alumno',
@@ -7,7 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuAlumnoPage implements OnInit {
 
-  constructor() { }
+  constructor(private alertController: AlertController) {}
+
+  async registrarAsistencia()
+  {
+    const alert = await this.alertController.create({
+      header: "¡Asistencia registrada!",
+      message: "Se ha registrado correctamente su asistencia, puede revisar el estado de sus asistencias en la pestaña 'Mis Asistencias'.",
+      buttons: ['Entendido']
+    });
+    await alert.present();
+  }
 
   ngOnInit() {
   }
