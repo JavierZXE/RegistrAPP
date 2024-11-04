@@ -27,8 +27,8 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-label style="font-size: 20px;">Bienvenido [nombre_usuario]</ion-label>
-      <ion-button [routerLink]="'/home'" fill="clear" color="warning" slot="end">
+      <ion-label style="font-size: 20px;">{{welcomeMessage }}</ion-label>
+      <ion-button (click)="logOutAlumno()" fill="clear" color="warning" slot="end">
         <ion-icon name="log-out-outline"></ion-icon>
         Cerrar sesion
       </ion-button>
