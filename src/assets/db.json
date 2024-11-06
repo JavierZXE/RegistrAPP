@@ -2,10 +2,10 @@
   "alumnos": [
     {
       "id": "1",
-      "nombre": "Juan",
-      "apellidos": "Pérez",
-      "correo": "juan.perez@example.com",
-      "contraseña": "password123",
+      "nombre": "Carlos",
+      "apellidos": "López",
+      "correo": "carlos.lopez@example.com",
+      "contraseña": "securepass1",
       "asignaturas": [
         "MAT4140_002",
         "FIS3150_001"
@@ -62,7 +62,7 @@
       "nombre": "Carlos",
       "apellidos": "López",
       "correo": "carlos.lopez@example.com",
-      "contraseña": "securepass",
+      "contraseña": "securepass1",
       "asignaturas": [
         "MAT4140_002",
         "FIS3150_001"
@@ -114,7 +114,7 @@
   ],
   "asignaturas": [
     {
-      "codigo": "MAT4140",
+      "id": "MAT4140",
       "nombre": "Matemáticas Avanzadas",
       "secciones": [
         {
@@ -171,11 +171,10 @@
             5
           ]
         }
-      ],
-      "id": "6c89"
+      ]
     },
     {
-      "codigo": "FIS3150",
+      "id": "FIS3150",
       "nombre": "Física Avanzada",
       "secciones": [
         {
@@ -218,11 +217,10 @@
             5
           ]
         }
-      ],
-      "id": "140d"
+      ]
     },
     {
-      "codigo": "BIO2100",
+      "id": "BIO2100",
       "nombre": "Biología Molecular",
       "secciones": [
         {
@@ -245,8 +243,73 @@
             4
           ]
         }
-      ],
-      "id": "3bbd"
+      ]
+    }
+  ],
+  "asistencias": [
+    {
+      "id": "1",
+      "alumno_id": "1",
+      "nombre_asignatura": "Estadística Descriptiva",
+      "codigo_seccion": "MAT4140_002",
+      "asistencias": [
+        {
+          "fecha": "24/11/2024",
+          "estado": "presente"
+        },
+        {
+          "fecha": "25/11/2024",
+          "estado": "ausente"
+        },
+        {
+          "fecha": "12/12/2024",
+          "estado": "presente"
+        },
+        {
+          "fecha": "11/10/2024",
+          "estado": "presente"
+        },
+        {
+          "fecha": "10/10/2024",
+          "estado": "presente"
+        },
+        {
+          "fecha": "12/12/2024",
+          "estado": "presente"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "alumno_id": "1",
+      "nombre_asignatura": "Física Avanzada",
+      "codigo_seccion": "FIS3150_001",
+      "asistencias": [
+        {
+          "fecha": "24/11/2024",
+          "estado": "presente"
+        },
+        {
+          "fecha": "25/11/2024",
+          "estado": "presente"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "alumno_id": "2",
+      "nombre_asignatura": "Física Avanzada",
+      "codigo_seccion": "FIS3150_001",
+      "asistencias": [
+        {
+          "fecha": "24/11/2024",
+          "estado": "presente"
+        },
+        {
+          "fecha": "25/11/2024",
+          "estado": "presente"
+        }
+      ]
     }
   ]
 }

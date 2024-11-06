@@ -9,14 +9,21 @@
 
 <ion-content [fullscreen]="true">
   <ion-grid>
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="4">
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size="6">
         <ion-range min="300" max="1000" step="10" [(ngModel)]="qrSize" (ionChange)="onRangeChange($event)" aria-label="Tamaño QR"></ion-range>
+      </ion-col>
+      <ion-col size="2">
+        <ion-item>
+          <ion-select label="Seleccionar seccion" label-placement="floating" fill="outline" [(ngModel)]="selectedSection" (ionChange)="onSectionChange()">
+            <ion-select-option *ngFor="let seccion of secciones" [value]="seccion">{{ seccion }}</ion-select-option>
+          </ion-select>
+        </ion-item>
       </ion-col>
     </ion-row>
     <ion-row class="ion-justify-content-center">
       <ion-col size="auto">
-        <qr-code [value]="'Quedas presente'" [size]="qrSize" errorCorrectionLevel="M"></qr-code>
+        <qr-code [value]="qrValue" [size]="qrSize" errorCorrectionLevel="M"></qr-code>
       </ion-col>
     </ion-row>
   </ion-grid>

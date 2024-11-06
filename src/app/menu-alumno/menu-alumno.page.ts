@@ -10,6 +10,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class MenuAlumnoPage implements OnInit {
   welcomeMessage: string = '';
+  codigoAsistencia: string = '';
   constructor(private alertController: AlertController,
     private authService: AuthService,
     private router: Router,
@@ -39,6 +40,31 @@ export class MenuAlumnoPage implements OnInit {
     await alert.present();
   }
 
+  registrarAsistencia() {
+    if (this.codigoAsistencia) {
+      const [codigoSeccion, fecha] = this.codigoAsistencia.split('|');
+      if (codigoSeccion && fecha) {
+        const usuario = this.authService.getCurrentUser();
+        const alumnoId = usuario.id;
+        const estado = 'presente';
+        
+        this.authService.addAsistencia(alumnoId, codigoSeccion, fecha, estado).subscribe(
+          (response) => {
+            console.log('Asistencia registrada correctamente', response);
+          },
+          (error) => {
+            console.error('Error al registrar la asistencia', error);
+          }
+        );
+      } else {
+        console.error('El formato del código de asistencia es incorrecto');
+      }
+      this.codigoAsistencia = '';
+    } else {
+      console.error('Debe ingresar un código de asistencia');
+    }
+  }
+
   private setWelcomeMessage() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     if (currentUser && currentUser.nombre) {
@@ -46,16 +72,6 @@ export class MenuAlumnoPage implements OnInit {
     } else {
       this.welcomeMessage = 'Bienvenido';
     }
-  }
-
-  async registrarAsistencia()
-  {
-    const alert = await this.alertController.create({
-      header: "¡Asistencia registrada!",
-      message: "Se ha registrado correctamente su asistencia, puede revisar el estado de sus asistencias en la pestaña 'Mis Asistencias'.",
-      buttons: ['Entendido']
-    });
-    await alert.present();
   }
 
   ngOnInit() {
