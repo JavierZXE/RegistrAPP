@@ -35,7 +35,6 @@
   </ion-header>
   <ion-content class="ion-padding">
     <div *ngIf="subjectsWithDetails.length > 0; else noSubjects">
-      <!-- Listado de asignaturas con formato de ion-item -->
       <div *ngFor="let subject of subjectsWithDetails">
         <ion-item>
           <ion-label>
@@ -44,7 +43,6 @@
           </ion-label>
         </ion-item>
 
-        <!-- Secciones de cada asignatura -->
         <div *ngIf="subject.secciones && subject.secciones.length > 0">
           <div *ngFor="let seccion of subject.secciones">
             <ion-item lines="none">
@@ -65,7 +63,6 @@
       </div>
     </div>
     
-    <!-- Mensaje si no se encuentran asignaturas -->
     <ng-template #noSubjects>
       <p>No se encontraron asignaturas para mostrar.</p>
     </ng-template>

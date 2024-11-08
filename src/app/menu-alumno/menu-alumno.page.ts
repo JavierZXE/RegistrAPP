@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { QrScannerModalComponent } from '../qr-scanner-modal/qr-scanner-modal.component';
 
 @Component({
   selector: 'app-menu-alumno',
@@ -11,11 +12,56 @@ import { AuthService } from '../services/auth.service';
 export class MenuAlumnoPage implements OnInit {
   welcomeMessage: string = '';
   codigoAsistencia: string = '';
-  constructor(private alertController: AlertController,
+
+  constructor(
+    private alertController: AlertController,
     private authService: AuthService,
     private router: Router,
+    private modalController: ModalController
   ) {
     this.setWelcomeMessage();
+  }
+
+  ngOnInit() {}
+
+  async openQrScanner() {
+    const modal = await this.modalController.create({
+      component: QrScannerModalComponent,
+    });
+
+    modal.onDidDismiss().then((result) => {
+      if (result.data) {
+        this.codigoAsistencia = result.data;
+        this.registrarAsistenciaConCodigo(result.data);
+      }
+    });
+
+    await modal.present();
+  }
+
+  registrarAsistenciaConCodigo(codigo: string) {
+    const [codigoSeccion, fecha] = codigo.split('|');
+    if (codigoSeccion && fecha) {
+      const usuario = this.authService.getCurrentUser();
+      const alumnoId = usuario.id;
+      const estado = 'presente';
+
+      this.authService.addAsistencia(alumnoId, codigoSeccion, fecha, estado).subscribe(
+        (response) => {
+          console.log('Asistencia registrada correctamente', response);
+        },
+        (error) => {
+          console.error('Error al registrar la asistencia', error);
+        }
+      );
+    } else {
+      console.error('El formato del código de asistencia es incorrecto');
+    }
+  }
+
+  private setWelcomeMessage() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    this.welcomeMessage = currentUser?.nombre ? `Bienvenido ${currentUser.nombre}` : 'Bienvenido';
   }
 
   async logOutAlumno() {
@@ -39,42 +85,5 @@ export class MenuAlumnoPage implements OnInit {
 
     await alert.present();
   }
-
-  registrarAsistencia() {
-    if (this.codigoAsistencia) {
-      const [codigoSeccion, fecha] = this.codigoAsistencia.split('|');
-      if (codigoSeccion && fecha) {
-        const usuario = this.authService.getCurrentUser();
-        const alumnoId = usuario.id;
-        const estado = 'presente';
-        
-        this.authService.addAsistencia(alumnoId, codigoSeccion, fecha, estado).subscribe(
-          (response) => {
-            console.log('Asistencia registrada correctamente', response);
-          },
-          (error) => {
-            console.error('Error al registrar la asistencia', error);
-          }
-        );
-      } else {
-        console.error('El formato del código de asistencia es incorrecto');
-      }
-      this.codigoAsistencia = '';
-    } else {
-      console.error('Debe ingresar un código de asistencia');
-    }
-  }
-
-  private setWelcomeMessage() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    if (currentUser && currentUser.nombre) {
-      this.welcomeMessage = `Bienvenido ${currentUser.nombre}`;
-    } else {
-      this.welcomeMessage = 'Bienvenido';
-    }
-  }
-
-  ngOnInit() {
-  }
-
 }
+

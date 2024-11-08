@@ -70,4 +70,14 @@ export class HomePage {
       this.presentAlert('Error', 'Usuario o contraseña incorrectos');
     }
   }
+
+  ngOnInit() {
+    const currentUser = localStorage.getItem('currentUser');
+    if (currentUser) {
+      const user = JSON.parse(currentUser);
+      const isStudent = user.tipo === 'alumno';
+
+      this.navCtrl.navigateRoot(isStudent ? '/menu-alumno' : '/menu-profesor');
+    }
+  }
 }

@@ -47,7 +47,7 @@ export class CambiarClaveProfesorPage{
     } else {
       const alert = await this.alertController.create({
         header: 'Error',
-        message: 'La clave antigua no es correcta.',
+        message: 'Ingrese su clave antigua.',
         buttons: ['OK']
       });
       await alert.present();

@@ -44,7 +44,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem(this.currentUserKey);
+    localStorage.removeItem('currentUser');
   }
 
   async login(username: string, password: string, isStudent: boolean) {
@@ -151,23 +151,22 @@ export class AuthService {
     return this.http.get<any>(url);
   }
 
-  // Método para agregar una nueva asistencia
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('currentUser');
+  }
+
   addAsistencia(alumnoId: string, codigoSeccion: string, fecha: string, estado: string): Observable<any> {
-    // Obtener la asistencia actual
     return this.getAsistenciasByAlumnoId1(codigoSeccion, alumnoId).pipe(
       switchMap(asistencias => {
         if (asistencias.length > 0) {
-          // Si ya existen asistencias, agregamos la nueva
-          const asistencia = asistencias[0];  // Suponemos que solo hay un registro por código de sección
+          const asistencia = asistencias[0];
           asistencia.asistencias.push({ fecha, estado });
 
-          // Actualizar la asistencia en la base de datos
           return this.http.put(`${this.apiUrlAsistencias}/${asistencia.id}`, asistencia);
         } else {
-          // Si no existe, creamos un nuevo registro
           const nuevaAsistencia = {
             alumno_id: alumnoId,
-            nombre_asignatura: 'Nombre de la asignatura', // Lo puedes obtener según sea necesario
+            nombre_asignatura: 'Nombre de la asignatura',
             codigo_seccion: codigoSeccion,
             asistencias: [{ fecha, estado }],
           };

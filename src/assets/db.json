@@ -16,7 +16,7 @@
       "nombre": "Ana",
       "apellidos": "Gómez",
       "correo": "ana.gomez@example.com",
-      "contraseña": "password456",
+      "contraseña": "password4567",
       "asignaturas": [
         "MAT4140_003",
         "FIS3150_002"
@@ -275,6 +275,30 @@
         },
         {
           "fecha": "12/12/2024",
+          "estado": "presente"
+        },
+        {
+          "fecha": "07/11/2024",
+          "estado": "presente"
+        },
+        {
+          "fecha": "07/11/2024",
+          "estado": "presente"
+        },
+        {
+          "fecha": "07/11/2024",
+          "estado": "presente"
+        },
+        {
+          "fecha": "07/11/2024",
+          "estado": "presente"
+        },
+        {
+          "fecha": "07/11/2024",
+          "estado": "presente"
+        },
+        {
+          "fecha": "07/11/2024",
           "estado": "presente"
         }
       ]
