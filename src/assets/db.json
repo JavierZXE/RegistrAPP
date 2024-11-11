@@ -316,6 +316,22 @@
         {
           "fecha": "25/11/2024",
           "estado": "presente"
+        },
+        {
+          "fecha": "11/11/2024",
+          "estado": "presente"
+        },
+        {
+          "fecha": "11/11/2024",
+          "estado": "presente"
+        },
+        {
+          "fecha": "11/11/2024",
+          "estado": "presente"
+        },
+        {
+          "fecha": "11/11/2024",
+          "estado": "presente"
         }
       ]
     },
@@ -331,6 +347,18 @@
         },
         {
           "fecha": "25/11/2024",
+          "estado": "presente"
+        }
+      ]
+    },
+    {
+      "id": "0bc2",
+      "alumno_id": "2",
+      "nombre_asignatura": "Nombre de la asignatura",
+      "codigo_seccion": "MAT4140_003",
+      "asistencias": [
+        {
+          "fecha": "11/11/2024",
           "estado": "presente"
         }
       ]

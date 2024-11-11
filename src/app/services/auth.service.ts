@@ -75,6 +75,11 @@ export class AuthService {
     return this.http.get<any>(url);
   }
 
+  getAsistenciasAlumno(alumnoId: string, codigoSeccion: string): Observable<any> {
+    const url = `${this.apiUrlAsistencias}?alumno_id=${alumnoId}&codigo_seccion=${codigoSeccion}`;
+    return this.http.get<any>(url);
+  }
+
   updateUserPassword(user: any) {
     return this.http.put(`${this.apiUrlStudents}/${user.id}`, user).subscribe(() => {
       localStorage.setItem(this.currentUserKey, JSON.stringify(user));
