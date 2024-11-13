@@ -80,6 +80,21 @@ export class AuthService {
     return this.http.get<any>(url);
   }
 
+  async alumnoPerteneceASeccion(alumnoId: string, codigoSeccion: string): Promise<boolean> {
+    try {
+      const data: any = await firstValueFrom(this.http.get(this.apiUrlStudents));
+      const alumno = data.find((alumno: any) => alumno.id === alumnoId);
+  
+      if (alumno && alumno.asignaturas) {
+        return alumno.asignaturas.some((asignatura: string) => asignatura === codigoSeccion);
+      }
+      return false;
+    } catch (error) {
+      console.error('Error al verificar la pertenencia del alumno a la sección:', error);
+      return false;
+    }
+  }
+
   updateUserPassword(user: any) {
     return this.http.put(`${this.apiUrlStudents}/${user.id}`, user).subscribe(() => {
       localStorage.setItem(this.currentUserKey, JSON.stringify(user));

@@ -47,6 +47,18 @@ export class MenuAlumnoPage implements OnInit {
       const alumnoId = usuario.id;
       const estado = 'presente';
   
+      const pertenece = await this.authService.alumnoPerteneceASeccion(alumnoId, codigoSeccion);
+  
+      if (!pertenece) {
+        const alert = await this.alertController.create({
+          header: 'Error',
+          message: 'El alumno no está inscrito en esta sección.',
+          buttons: ['OK']
+        });
+        await alert.present();
+        return;
+      }
+  
       this.authService.getAsistenciasAlumno(alumnoId, codigoSeccion).subscribe(
         async (asistencias) => {
           const asistenciaExistente = asistencias.some((asistencia: any) =>
