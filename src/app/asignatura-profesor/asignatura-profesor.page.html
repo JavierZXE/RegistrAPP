@@ -33,80 +33,37 @@
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
-  <ion-content class="ion-padding">
-    <ion-list>
+  <ion-content class="ion-padding"><div *ngIf="subjectsWithDetails.length > 0; else noSubjects">
+    <div *ngFor="let subject of subjectsWithDetails">
       <ion-item>
         <ion-label>
-          <strong>Arquitectura</strong><br>
-          <ion-text>ASY4131_002D</ion-text><br>
-          <ion-note color="medium" class="ion-text-wrap">
-            Modalidad: Diurno
-          </ion-note>&nbsp;&nbsp;
-          <ion-note color="medium" class="ion-text-wrap">
-            Desde: 11:20 Hasta: 12:40
-          </ion-note>
+          <strong>{{ subject.nombre }}</strong><br>
+          <ion-text>{{ subject.codigo }}</ion-text><br>
         </ion-label>
       </ion-item>
-      <ion-item>
-        <ion-label>
-          <strong>Calidad De Sofware</strong><br>
-          <ion-text>CSY41111_002D</ion-text><br>
-          <ion-note color="medium" class="ion-text-wrap">
-            Modalidad: Diurno
-          </ion-note>&nbsp;&nbsp;
-          <ion-note color="medium" class="ion-text-wrap">
-            Desde: 11:20 Hasta: 12:40
-          </ion-note>
-        </ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>
-          <strong>Estadistica Descriptiva</strong><br>
-          <ion-text>MAT4140_002D</ion-text><br>
-          <ion-note color="medium" class="ion-text-wrap">
-            Modalidad: Diurno
-          </ion-note>&nbsp;&nbsp;
-          <ion-note color="medium" class="ion-text-wrap">
-            Desde: 11:20 Hasta: 12:40
-          </ion-note>
-        </ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>
-          <strong>Etica Para El Trabajo</strong><br>
-          <ion-text>EAY4450_003D</ion-text><br>
-          <ion-note color="medium" class="ion-text-wrap">
-            Modalidad: Diurno
-          </ion-note>&nbsp;&nbsp;
-          <ion-note color="medium" class="ion-text-wrap">
-            Desde: 11:20 Hasta: 12:40
-          </ion-note>
-        </ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>
-          <strong>Ingles Intermedio</strong><br>
-          <ion-text>INI5111_011D</ion-text><br>
-          <ion-note color="medium" class="ion-text-wrap">
-            Modalidad: Diurno
-          </ion-note>&nbsp;&nbsp;
-          <ion-note color="medium" class="ion-text-wrap">
-            Desde: 11:20 Hasta: 12:40
-          </ion-note>
-        </ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>
-          <strong>Programacion De Aplicaciones Moviles</strong><br>
-          <ion-text>PGY4121_002D</ion-text><br>
-          <ion-note color="medium" class="ion-text-wrap">
-            Modalidad: Diurno
-          </ion-note>&nbsp;&nbsp;
-          <ion-note color="medium" class="ion-text-wrap">
-            Desde: 11:20 Hasta: 12:40
-          </ion-note>
-        </ion-label>
-      </ion-item>
-    </ion-list>
+
+      <div *ngIf="subject.secciones && subject.secciones.length > 0">
+        <div *ngFor="let seccion of subject.secciones">
+          <ion-item lines="none">
+            <ion-label>
+              <p><strong>Código de sección:</strong> {{ seccion.codigo_seccion }}</p>
+              <ion-note color="medium">
+                <p><strong>Horario:</strong></p>
+                <ul>
+                  <li *ngFor="let horario of seccion.horario">
+                    {{ horario.dia }} de {{ horario.inicio }} a {{ horario.fin }}
+                  </li>
+                </ul>
+              </ion-note>
+            </ion-label>
+          </ion-item>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #noSubjects>
+    <p>No se encontraron asignaturas para mostrar.</p>
+  </ng-template>
   </ion-content>
 </div>

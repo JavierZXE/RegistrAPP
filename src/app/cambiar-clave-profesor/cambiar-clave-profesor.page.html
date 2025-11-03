@@ -43,13 +43,13 @@
               <br>
             </ion-card-header>
             <ion-card-content>
-              <ion-input label="Clave antigua" label-placement="floating" fill="outline"></ion-input>
+              <ion-input [(ngModel)]="claveAntigua" placeholder="Clave antigua" type="password" fill="outline"></ion-input>
               <br>
-              <ion-input label="Clave nueva" label-placement="floating" fill="outline"></ion-input>
+              <ion-input [(ngModel)]="claveNueva" placeholder="Clave nueva" type="password" fill="outline"></ion-input>
               <br>
-              <ion-input label="Repetir clave nueva" label-placement="floating" fill="outline"></ion-input>
+              <ion-input [(ngModel)]="confirmarClaveNueva" placeholder="Repetir clave nueva" type="password" fill="outline"></ion-input>
               <br>
-              <ion-button (click)="restablecerPwd()" expand="block" fill="solid" shape="round" color="warning">
+              <ion-button (click)="cambiarClave()" expand="block" fill="solid" shape="round" color="warning">
                 Cambiar clave
               </ion-button>
             </ion-card-content>

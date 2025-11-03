@@ -1,5 +1,4 @@
 <ion-header [translucent]="true">
-
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -23,19 +22,19 @@
         <ion-card *ngIf="selectedCard === 'first'">
           <ion-card-header class="ion-align-items-center">
             <br>
-            <ion-card-title>Iniciar Sesion</ion-card-title>
+            <ion-card-title>Iniciar Sesión</ion-card-title>
             <ion-card-subtitle>Alumno</ion-card-subtitle>
             <br>
           </ion-card-header>
         
           <ion-card-content>
-            <ion-input label="Usuario" label-placement="floating" fill="outline"></ion-input>
+            <ion-input #usernameInput [(ngModel)]="username" label="Usuario" label-placement="floating" fill="outline"></ion-input>
             <br>
-            <ion-input label="Contraseña" label-placement="floating" fill="outline"></ion-input>
+            <ion-input #passwordInput [(ngModel)]="password" type="password" label="Contraseña" label-placement="floating" fill="outline"></ion-input>
             <br>
             <a (click)="restablecerPwd()">¿Olvidaste tu contraseña?</a>
             <br><br>
-            <ion-button [routerLink]="['/menu-alumno']" expand="block" color="warning" shape="round">
+            <ion-button (click)="login()" expand="block" color="warning" shape="round">
               Ingresar
             </ion-button>
           </ion-card-content>
@@ -44,18 +43,18 @@
         <ion-card *ngIf="selectedCard === 'second'">
           <ion-card-header class="ion-align-items-center">
             <br>
-            <ion-card-title>Iniciar Sesion</ion-card-title>
+            <ion-card-title>Iniciar Sesión</ion-card-title>
             <ion-card-subtitle>Profesor</ion-card-subtitle>
             <br>
           </ion-card-header>
           <ion-card-content>
-            <ion-input label="Usuario" label-placement="floating" fill="outline"></ion-input>
+            <ion-input #usernameInput [(ngModel)]="username" label="Usuario" label-placement="floating" fill="outline"></ion-input>
             <br>
-            <ion-input label="Contraseña" label-placement="floating" fill="outline"></ion-input>
+            <ion-input #usernameInput [(ngModel)]="password" type="password" label="Contraseña" label-placement="floating" fill="outline"></ion-input>
             <br>
             <a (click)="restablecerPwd()">¿Olvidaste tu contraseña?</a>
             <br><br>
-            <ion-button [routerLink]="['/menu-profesor']" expand="block" color="warning" shape="round">
+            <ion-button (click)="login()" expand="block" color="warning" shape="round">
               Ingresar
             </ion-button>
           </ion-card-content>

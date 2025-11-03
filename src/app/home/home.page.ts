@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { Component, ViewChild } from '@angular/core';
+import { AlertController, NavController } from '@ionic/angular';
+import { AuthService } from '../services/auth.service';
+import { IonInput } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +10,28 @@ import { AlertController } from '@ionic/angular';
 })
 export class HomePage {
   selectedCard: string = 'first';
-  constructor(private alertController: AlertController) {}
+  username: string = '';
+  password: string = '';
 
-  async restablecerPwd()
-  {
+  @ViewChild('usernameInput', { static: false }) usernameInput!: IonInput;
+  @ViewChild('passwordInput', { static: false }) passwordInput!: IonInput;
+
+  constructor(
+    private alertController: AlertController,
+    private authService: AuthService,
+    private navCtrl: NavController
+  ) {}
+
+  async presentAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: message,
+      buttons: ['Entendido'],
+    });
+    await alert.present();
+  }
+
+  async restablecerPwd() {
     const alert = await this.alertController.create({
       header: "Recuperar Contraseña",
       subHeader: "Verifica tu Correo",
@@ -19,5 +39,45 @@ export class HomePage {
       buttons: ['Entendido']
     });
     await alert.present();
+  }
+
+  async login() {
+    const isStudent = this.selectedCard === 'first';
+
+    if (!this.username) {
+      this.presentAlert('Campo vacío', 'Por favor, ingresa tu usuario.');
+      await this.usernameInput.setFocus();
+      return;
+    }
+    
+    if (!this.password) {
+      this.presentAlert('Campo vacío', 'Por favor, ingresa tu contraseña.');
+      await this.passwordInput.setFocus();
+      return;
+    }
+
+    const user = await this.authService.login(this.username, this.password, isStudent);
+    
+    if (user) {
+      localStorage.setItem('currentUser', JSON.stringify(user));
+
+      if (isStudent) {
+        this.navCtrl.navigateRoot('/menu-alumno');
+      } else {
+        this.navCtrl.navigateRoot('/menu-profesor');
+      }
+    } else {
+      this.presentAlert('Error', 'Usuario o contraseña incorrectos');
+    }
+  }
+
+  ngOnInit() {
+    const currentUser = localStorage.getItem('currentUser');
+    if (currentUser) {
+      const user = JSON.parse(currentUser);
+      const isStudent = user.tipo === 'alumno';
+
+      this.navCtrl.navigateRoot(isStudent ? '/menu-alumno' : '/menu-profesor');
+    }
   }
 }
